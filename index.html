@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Short+Stack&display=swap" rel="stylesheet">
 
   <title>Calendar</title>
 </head>
-<body>
+<body onload="newDate(new Date().getFullYear(), new Date().getMonth()); drawTable(date);">
 
   <div class="main">
     <table id = "clndr">
@@ -23,9 +24,21 @@
         <td class = "main-col">Saturday</td>
       </tr>
     </table>
+    <button id = "lastm" onclick = "newDate(date.getFullYear(), date.getMonth() - 1); drawTable(date); displayByID('reset')" = >LAST MONTH</button>
+    <button id = "nextm" onclick = "newDate(date.getFullYear(), date.getMonth() + 1); drawTable(date); displayByID('reset')">NEXT MONTH</button>
+    <button id = "reset" onclick = "newDate(new Date().getFullYear(), new Date().getMonth()); drawTable(date); hideByID('reset')">Reset</button>
+
   </div>
 
-  <p id="demo"></p>
+  <div class="form">
+    <form action="#" id = "dateForm">
+      <input type="text" id="year" placeholder="YEAR" size="4" name="year">
+      <input type="text" id="month" placeholder = "MM" size="2" name="month"><br><br>
+      <input type="button" class="submit" value="Submit" onclick="inputDate();">
+    </form>
+  </div>
+
+
 
   <script src="/js/calendar.js"></script>
 

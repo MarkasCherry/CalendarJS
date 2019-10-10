@@ -1,5 +1,10 @@
 * {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-family: 'Short Stack', cursive;
+  outline: 0;
+}
+
+button:focus {
+    outline: none;
 }
 
 body {
@@ -7,7 +12,7 @@ body {
 }
 
 .main {
-  margin: 10%;
+  margin: 8%;
 }
 
 caption {
@@ -52,4 +57,106 @@ table tr td:last-child {
 .main-col, .main-col:hover {
   background-color: #40bfee;
   cursor: default;
+}
+
+.buttons {
+  margin: 10%;
+}
+
+#lastm {
+  display: block;
+  min-width: 20%;
+  color: #494949 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffffbd;
+  padding: 8px;
+  border: 2px solid #494949 !important;
+  transition: all 0.4s ease 0s;
+  float: left;
+}
+
+#lastm:hover {
+  color: #ffffff !important;
+  background: #f4a9cd57;
+  border-color: #f4a9cd57 !important;
+  transition: all 0.4s ease 0s;
+}
+
+#nextm {
+  display: block;
+  min-width: 20%;
+  color: #494949 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffffbd;
+  padding: 8px;
+  border: 2px solid #494949 !important;
+  transition: all 0.4s ease 0s;
+  float: right;
+}
+
+#nextm:hover {
+  color: #ffffff !important;
+  background: #f4a9cd57;
+  border-color: #f4a9cd57 !important;
+  transition: all 0.4s ease 0s;
+}
+
+#reset {
+  display: none;
+  min-width: 10%;
+  float: left;
+  margin-left: 25%;
+  color: #494949 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffffbd;
+  padding: 8px;
+  border: 2px solid #494949 !important;
+  transition: all 0.4s ease 0s;
+}
+
+#reset:hover {
+  color: #ffffff !important;
+  background: #f40000;
+  border-color: #000000 !important;
+  transition: all 0.4s ease 0s;
+}
+
+.form {
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#year, #month {
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  border-bottom: 1px dashed black;
+  color: black;
+}
+
+.submit {
+  display: block;
+  width: 100%;
+  color: #494949 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  padding: 5px;
+  border: none;
+  transition: all 0.4s ease 0s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit:hover {
+  color: #ffffff !important;
+  background: #40d64f;
+  border-color: #000000 !important;
+  transition: all 0.4s ease 0s;
 }
