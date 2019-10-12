@@ -29,7 +29,6 @@ table {
 
 td {
   border: 1px solid #ddd;
-  padding: 8px;
   text-align: left;
   padding: 20px;
 }
@@ -159,4 +158,10 @@ table tr td:last-child {
   background: #40d64f;
   border-color: #000000 !important;
   transition: all 0.4s ease 0s;
+}
+
+@media only screen and (max-width: 977px) {
+  td {
+    padding: 15px;
+  }
 }
