@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/css/style.css">
-<link href="https://fonts.googleapis.com/css?family=Short+Stack&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Short+Stack&display=swap" rel="stylesheet">
 
   <title>Calendar</title>
 </head>
@@ -26,8 +26,7 @@
     </table>
     <button id = "lastm" onclick = "newDate(date.getFullYear(), date.getMonth() - 1); drawTable(date); displayByID('reset')" = >LAST MONTH</button>
     <button id = "nextm" onclick = "newDate(date.getFullYear(), date.getMonth() + 1); drawTable(date); displayByID('reset')">NEXT MONTH</button>
-    <button id = "reset" onclick = "newDate(new Date().getFullYear(), new Date().getMonth()); drawTable(date); hideByID('reset')">Reset</button>
-
+    <button id = "reset" onclick = "newDate(new Date().getFullYear(), new Date().getMonth()); drawTable(date); hideByID('reset')">RESET</button>
   </div>
 
   <div class="form">
@@ -37,8 +36,6 @@
       <input type="button" class="submit" value="Submit" onclick="inputDate();">
     </form>
   </div>
-
-
 
   <script src="/js/calendar.js"></script>
 

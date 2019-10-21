@@ -1,8 +1,7 @@
+//Global date variable
 var date = new Date();
 
-
-
-
+//returns name of the month
 function getMon(index) {
   var month = new Array();
   month[0] = "January";
@@ -21,61 +20,168 @@ function getMon(index) {
   return month[index];
 }
 
-
-
-
+//returns holidays
 function eventDay(date) {
-  /*
-    Tuesday, 1 January: New Year’s Day
-    Friday, 19 April: Good Friday
-    Monday, 22 April: Easter Monday
-    Monday, 6 May: May Day Bank Holiday – first Monday in May
-    Monday, 27 May: Spring Bank Holiday – last Monday in May
-    Monday, 26 August: Summer Bank Holiday – last Monday in August
-    Wednesday, 25 December: Christmas Day
-    Thursday, 26 December: Boxing Day
-    Wednesday, 2 January: New Year Holiday
-    Monday, 4 February: Winter Holiday (R) – Inverness
-    Monday, 25 March: Winter Holiday (R) – Lochaber
-    Monday, 1 April: Spring Holiday (R) – Carnoustie, Dundee, Fife, Inverness, Monifieth, Perth, Scottish Borders
-    Monday, 8 April: Spring Holiday (R) – Angus, Elgin
-    Monday, 15 April: Spring Holiday (R) – Edinburgh
-    Monday, 29 April: Spring Holiday (R) – Inverclyde
-    Tuesday, 7 May: Victoria Day (R) – Clydebank, Stirling
-    Monday, 20 May: Victoria Day (R) – Edinburgh
-    Monday, 3 June: Victoria Day (R) – Fife, Galashiels, Inverclyde
-    Thursday, 13 June: Lanimer Day (R) – Lanark
-    Monday, 5 August: Summer Bank Holiday – first Monday in August
-    Monday, 2 September: Late Summer Holiday (R) – Elgin, Inverclyde
-    Monday, 9 September: Battle of Stirling Bridge (R) – Falkirk, Perth, Stirling
-    Monday, 16 September: Autumn Holiday (R) – Edinburgh
-    Monday, 30 September: Autumn Holiday (R) – Aberdeen, Angus, East Dumbartonshire, Glasgow, North Lanarkshire, Paisley, South Lanarkshire, West Dumbartonshire
-    Monday, 7 October: Autumn Holiday (R) – Carnoustie, Dundee, Inverness, Monifieth, Perth
-    Monday, 14 October: Autumn Holiday (R) – Scottish Borders
-    Monday, 21 October: Autumn Holiday (R) – Elgin, Fife
-    Monday, 4 November: Samhain (R) – Inverness
-    Saturday, 30 November: St Andrew’s Day
+  //Algorithm for Easter dates
+  var y = date.getFullYear();
+  var a = y % 19;
+  var b = y % 4;
+  var c = y % 7;
+  var k = parseInt(y / 100);
+  var p = parseInt((13 + 8*k) / 25);
+  var q = parseInt(k / 4);
+  var m = (15 - p + k - q) % 30;
+  var n = (4 + k - q) % 7;
+  var d = (19*a + m) % 30;
+  var e = (2*b + 4*c + 6*d + n) % 7;
+  var day = 22 + d + e;
 
-
-  */
-  if (date.getMonth() == 9 && date.getDate() == 1) {
-    return "<br>MARK HOLIDAY";
+  if (day == 57) {
+    day = 50;
   }
+
+  if (d == 28 && e == 6 && (11*m + 11) % 30 < 19) {
+    day = 49;
+  }
+
+  var easterDay = new Date(date.getFullYear(), 2, day);
+
+  //If month and date are correct, returns name of holiday
+  if (date.getMonth() == 0 && date.getDate() == 1) {
+    return "<br>New Year’s Day";
+  }
+
+  else if (date.getMonth() == 0 && date.getDate() == 2) {
+    return "<br>New Year Holiday";
+  }
+
+  else if (date.getMonth() == 2 && date.getDate() == 17) {
+    return "<br>St Patrick’s Day";
+  }
+
+  else if (date.getMonth() == 2 && date.getDate() == 31) {
+    return "<br>+Summer Time";
+  }
+
+  else if (date.getMonth() == easterDay.getMonth() && date.getDate() == easterDay.getDate() - 2) {
+    return "<br>Good Friday";
+  }
+
+  else if (date.getMonth() == easterDay.getMonth() && date.getDate() == easterDay.getDate()) {
+    return "<br>Easter Sunday";
+  }
+
+  else if (date.getMonth() == easterDay.getMonth() && date.getDate() == easterDay.getDate() + 1) {
+    return "<br>Easter Monday";
+  }
+
+  else if (date.getMonth() == 4 && date.getDate() <= 7 && date.getDay() == 1) {
+    return "<br>Bank Holiday";
+  }
+
+  else if (date.getMonth() == 4 && date.getDate() > 24 && date.getDay() == 1) {
+    return "<br>Bank Holiday";
+  }
+
+  else if (date.getMonth() == 4 && date.getDate() > 17 && date.getDate() < 25 && date.getDay() == 1) {
+    return "<br>Victoria Day";
+  }
+
+  else if (date.getMonth() == 7 && date.getDate() <= 7 && date.getDay() == 1) {
+    return "<br>Bank Holiday";
+  }
+
+  else if (date.getMonth() == 7 && date.getDate() > 24 && date.getDay() == 1) {
+    return "<br>Bank Holiday";
+  }
+
+  else if (date.getFullYear() == 1999 && date.getMonth() == 7 && date.getDate() == 8) {
+    return "<br>Markas Birthday!";  //easter egg. My birthday lol. I know, very unporofessional
+  }
+
+  else if (date.getMonth() == 10 && date.getDate() == 30) {
+    return "<br>St Andrew’s Day";
+  }
+
+  else if (date.getMonth() == 11 && date.getDate() == 24) {
+    return "<br>Christmas Eve";
+  }
+
+  else if (date.getMonth() == 11 && date.getDate() == 25) {
+    return "<br>Christmas Day";
+  }
+
+  else if (date.getMonth() == 11 && date.getDate() == 26) {
+    return "<br>Boxing day";
+  }
+
+  //If there is not holiday that day, returns empty string
   else {
     return "";
   }
 }
 
-
-
-
+//Sets date manually
 function newDate(year, month) {
   date = new Date(year, month);
 }
 
+//Creating end user notes
+function createNote(id) {
+  //if there is no note created, you can create new
+  if(localStorage.getItem(id) == null || localStorage.getItem(id) == "") {
+      var note = prompt("Enter new note:");
+
+      if (note == null || note == "") {
+        note = "";
+      }
+      else {
+        note = "<br>NOTE: " + note;
+      }
+
+      localStorage.setItem(id, note); //saving to local memory so every user can have individual notes
+      drawTable(date);  //redrawing table now including note
+    }
+
+  //if there is already note created, you can delete it
+  else {
+    if (confirm("Do you want to remove note?")) {
+      localStorage.removeItem(id);  //removing note from local memory
+      drawTable(date); //redrawing table without removed note
+    }
+  }
+}
+
+//Generates unique id for each table column [idYEARMMDD]
+function generateID(date) {
+  var id = "id" + date.getFullYear().toString();
+
+  //if there is only one character, add 0 in beggining
+  if (date.getMonth().toString().length == 1) {
+    id += "0" + date.getMonth().toString();
+  }
+  else {
+    id += date.getMonth().toString();
+  }
+
+  //if there is only one character, add 0 in beggining
+  if (date.getDate().toString().length == 1) {
+    id += "0" + date.getDate().toString();
+  }
+  else {
+    id += date.getDate().toString();
+  }
+
+  return id;
+}
+
+//returns ID of column which was clicked
+function getID() {
+   return event.srcElement.id;
+}
 
 
-
+//Removes all table
 function removeTable() {
   var table = document.getElementById("clndr");
 
@@ -84,42 +190,52 @@ function removeTable() {
   }
 }
 
+//Draws table
 function drawTable(date) {
+  removeTable(); //remove any tables on screen first
 
-  removeTable();
+  currentMonth = date.getMonth(); //getting given date month
 
-  currentMonth = date.getMonth();
-
-  //Display date of calendar
+  //Display date of calendar in caption
   document.getElementById("caption").innerHTML = getMon(currentMonth) + ", " + date.getFullYear();
 
-  //Setting giving date to first day of given month
-  var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-  firstDay = firstDay.getDay();
-
+  //Setting giving date to first day of month, then taking back couple days
+  //depanding weekday of 1st day of month, so they table will be started to show
+  //from sunday, even if it is in the last month.
   date = new Date(date.getFullYear(), date.getMonth(), 1 - new Date(date.getFullYear(), date.getMonth(), 1).getDay())
 
   var table = document.getElementById("clndr");
 
+  //Color of column (here - default colors of css)
   var background_color = "";
   var text_color = "";
 
+  //Start drawing table day by day
   for(var rowIndex = 1; rowIndex < 7; rowIndex++) {
-    if (currentMonth < date.getMonth() && date.getMonth() != 11) {
+    //Breaking, to avoid extra rows of other month
+    if (currentMonth == 0 && date.getMonth() == 1) {
       break;
     }
-    else if (date.getMonth() == 0 && currentMonth == 11){
+    else if (currentMonth == 0){
+      //nothing (this condition to avoid bug)
+    }
+    else if (currentMonth < date.getMonth()) {
       break;
     }
+    else if (date.getMonth() == 0 && currentMonth == 11) {
+      break;
+    }
+
+    //new row
     var row = table.insertRow(rowIndex);
 
     for(var colIndex = 0; colIndex < 7; colIndex++) {
-
-      if (date.getMonth() == currentMonth) {
+      //Giving colors by condition
+      if (date.getMonth() == currentMonth) {  //default colors
         background_color = "";
         text_color = "";
       }
-      else {
+      else {  //color of other months
         text_color = "#b9b4b4";
         background_color = "rgba(43, 43, 43, 0.21)";
       }
@@ -127,38 +243,59 @@ function drawTable(date) {
       if (date.getFullYear() === new Date().getFullYear() &&
           date.getMonth() === new Date().getMonth() &&
           date.getDate() == new Date().getDate()) {
-            background_color = "#fb9ebd";
+            background_color = "#fb9ebd"; //color for TODAY
           }
 
-      row.insertCell(colIndex).innerHTML = date.getDate() + eventDay(date);
-      date.setDate(date.getDate()+1);
+      //Display:
+      //if there is no notes this day, just print date and event day (returned if exists)
+      if (localStorage.getItem(generateID(date)) == null) {
+        row.insertCell(colIndex).innerHTML = date.getDate() + eventDay(date);
+      }
+      //Otherwise, print date, event day and end-user note
+      else {
+        row.insertCell(colIndex).innerHTML = date.getDate() + eventDay(date) + localStorage.getItem(generateID(date));
+      }
 
+      //Aplying seted color for column
       document.getElementById("clndr").rows[rowIndex].cells[colIndex].style.color = text_color;
       document.getElementById("clndr").rows[rowIndex].cells[colIndex].style.background = background_color;
+      //Adding ID and onclick attributes for each column
+      document.getElementById("clndr").rows[rowIndex].cells[colIndex].setAttribute("id", generateID(date));
+      document.getElementById("clndr").rows[rowIndex].cells[colIndex].setAttribute("onclick", "createNote(getID())");
+
+      //going to next day
+      date.setDate(date.getDate()+1);
     }
   }
 }
 
+//Display element with given ID
+function displayByID(id) {
+  document.getElementById(id).style.display = "block";
+}
 
+//Hide element with given ID
+function hideByID(id) {
+  document.getElementById(id).style.display = "none";
+}
 
-
-
+//Giving custom date
 function inputDate() {
   var year = document.getElementById("year").value;
   var month = document.getElementById("month").value;
-  submitOK = "true";
+  submitted = "true";
 
   if (isNaN(year) || year < 1) {
     alert("Please enter possible year");
-    submitOK = "false";
+    submitted = "false";
   }
 
   if (isNaN(month) || month < 1 || month > 12) {
     alert("The month must be a number between 1 and 12");
-    submitOK = "false";
+    submitted = "false";
   }
 
-  if (submitOK == "false") {
+  if (submitted == "false") {
     document.getElementById("dateForm").reset();
     return false;
   }
@@ -168,18 +305,4 @@ function inputDate() {
     displayByID("reset");
     document.getElementById("dateForm").reset();
   }
-
-}
-
-
-
-function displayByID(id) {  //Display element with given ID
-  document.getElementById(id).style.display = "block";
-}
-
-
-
-
-function hideByID(id) {   //Hide element with given ID
-  document.getElementById(id).style.display = "none";
 }

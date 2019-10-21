@@ -35,7 +35,7 @@ td {
 
 
 td:hover {
-  background-color: #fb9ebd;
+  background-color: rgba(251, 158, 189, 0.4);
   cursor: pointer;
 }
 
@@ -163,5 +163,11 @@ table tr td:last-child {
 @media only screen and (max-width: 977px) {
   td {
     padding: 15px;
+  }
+}
+
+@media only screen and (max-width: 893px) {
+  td {
+    padding: 10px;
   }
 }
